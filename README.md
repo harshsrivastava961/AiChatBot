@@ -1,10 +1,10 @@
 # AI ChatBot - React Native App
 
-A simple AI-powered chatbot application built with React Native, featuring OpenAI's GPT-3.5-turbo integration. This app provides a clean, modern chat interface with dark mode support, persistent chat history, and smooth user experience.
+A simple AI-powered chatbot application built with React Native, featuring **Groq Cloud's** Llama 3.1 models via their OpenAI-compatible API. This app provides a clean, modern chat interface with dark mode support, persistent chat history, and smooth user experience.
 
 ## Features
 
-- 🤖 **AI Chat Interface**: Conversational AI powered by OpenAI's Chat Completion API
+- 🤖 **AI Chat Interface**: Conversational AI powered by Groq Cloud's Llama 3.1 models (OpenAI-compatible API)
 - 💬 **Chat History**: Persistent local storage using AsyncStorage
 - 🌓 **Dark Mode**: Toggle between light and dark themes
 - 📱 **Cross-Platform**: Works on both iOS and Android
@@ -19,7 +19,7 @@ Before you begin, ensure you have:
 - React Native development environment set up
   - [Android Setup](https://reactnative.dev/docs/environment-setup?os=android)
   - [iOS Setup](https://reactnative.dev/docs/environment-setup?os=ios)
-- OpenAI API key ([Get one here](https://platform.openai.com/api-keys))
+- Groq Cloud API key ([Get one here](https://console.groq.com/keys))
 
 ## Installation
 
@@ -30,14 +30,14 @@ Before you begin, ensure you have:
    npm install
    ```
 
-3. **Configure OpenAI API Key**:
+3. **Configure Groq API Key**:
    
-   Open `src/config/apiConfig.ts` and replace `YOUR_OPENAI_API_KEY_HERE` with your actual OpenAI API key:
+   Open `src/config/apiConfig.ts` and replace `YOUR_GROQ_API_KEY_HERE` with your actual Groq API key:
    ```typescript
-   export const OPENAI_API_KEY = 'sk-your-actual-api-key-here';
+   export const GROQ_API_KEY = 'gsk_your_actual_api_key_here';
    ```
    
-   ⚠️ **Important**: Never commit your API key to version control. The `apiConfig.ts` file should be kept private.
+   ⚠️ **Important**: Never commit your API key to version control. The `apiConfig.ts` file is already in `.gitignore` and should be kept private.
 
 4. **iOS Setup** (iOS only):
    ```sh
@@ -87,7 +87,7 @@ AiChatBot/
 │   │   ├── SettingsScreen.tsx
 │   │   └── AboutScreen.tsx
 │   ├── services/            # API and storage services
-│   │   ├── openaiService.ts
+│   │   ├── openaiService.ts  # Groq Cloud (OpenAI-compatible) client
 │   │   └── storageService.ts
 │   ├── theme/               # Theme configuration
 │   │   └── colors.ts
@@ -101,11 +101,13 @@ AiChatBot/
 
 ### API Key Setup
 
-The app uses OpenAI's Chat Completion API. To configure:
+The app uses Groq Cloud's OpenAI-compatible Chat Completions API. To configure:
 
-1. Get your API key from [OpenAI Platform](https://platform.openai.com/api-keys)
+1. Get your API key from [Groq Console](https://console.groq.com/keys)
 2. Update `src/config/apiConfig.ts` with your key
-3. The app uses GPT-3.5-turbo model by default (free tier compatible)
+3. Default model is `llama-3.1-8b-instant` (fast, free-tier friendly). You can change the model in `src/services/openaiService.ts`.
+
+> Want to use OpenAI instead? Swap the API URL and model in `src/services/openaiService.ts` and set `OPENAI_API_KEY` instead of `GROQ_API_KEY`.
 
 ### Theme Customization
 
@@ -116,16 +118,16 @@ Colors can be customized in `src/theme/colors.ts`. The app supports:
 ## Usage
 
 1. **Start a Conversation**: Type a message in the input field and tap send
-2. **View History**: All conversations are automatically saved locally
+2. **View History**: All conversations are automatically saved locally and restored on launch or when returning to the chat screen
 3. **Change Theme**: Go to Settings → Toggle Dark Mode
-4. **Clear History**: Settings → Clear Chat History
+4. **Clear History**: Settings → Clear Chat History (messages disappear immediately on returning to chat)
 5. **View Info**: Settings → About
 
 ## Error Handling
 
 The app handles various error scenarios:
 - Invalid API key
-- Rate limit exceeded (free tier quota)
+- Rate limit exceeded (temporary throttling)
 - Network errors
 - Server errors
 
@@ -134,7 +136,7 @@ Error messages are displayed to the user with actionable information.
 ## Privacy & Security
 
 - Chat history is stored locally on your device
-- Messages are sent to OpenAI's API for processing
+- Messages are sent to Groq Cloud's API for processing
 - No personal information is collected
 - API keys should be kept secure and never committed to version control
 
@@ -147,13 +149,17 @@ Error messages are displayed to the user with actionable information.
 - `axios`: HTTP client for API calls
 - `@react-native-async-storage/async-storage`: Local storage
 - `react-native-safe-area-context`: Safe area handling
+- `@react-navigation/native-stack`: Navigation stack implementation
 
 ## Troubleshooting
 
 ### API Key Issues
 - Ensure your API key is correctly set in `src/config/apiConfig.ts`
-- Verify your OpenAI account has available credits
-- Check for rate limit errors (free tier has usage limits)
+- Verify your Groq account has an active key (free tier available)
+- Groq rate limits are generous; if you hit them, wait and retry
+
+### Clearing History Appears Delayed
+- The chat screen reloads history whenever it regains focus. After clearing history in Settings, simply return to the chat screen—the conversation will be empty.
 
 ### Build Issues
 - **Android**: Clean build with `cd android && ./gradlew clean && cd ..`
@@ -163,6 +169,11 @@ Error messages are displayed to the user with actionable information.
 ### Vector Icons Not Showing
 - **Android**: Ensure `fonts.gradle` is applied in `android/app/build.gradle`
 - **iOS**: Run `pod install` in the `ios` directory
+
+### Switch Back to OpenAI
+- Update `src/services/openaiService.ts` to use `https://api.openai.com/v1/chat/completions`
+- Change the model to `gpt-3.5-turbo`
+- Replace `GROQ_API_KEY` with `OPENAI_API_KEY`
 
 ## Future Enhancements
 
@@ -186,4 +197,4 @@ For issues and questions, please open an issue on the repository.
 
 ---
 
-Built with ❤️ using React Native
+Built with ❤️ using React Native and Groq Cloud
