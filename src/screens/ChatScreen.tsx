@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import {
   View,
   Text,
@@ -14,6 +14,7 @@ import {
   SafeAreaView,
   useSafeAreaInsets,
 } from 'react-native-safe-area-context';
+import { useFocusEffect } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import { Message } from '../types';
 import { useTheme } from '../context/ThemeContext';
@@ -31,9 +32,11 @@ export const ChatScreen: React.FC<{ navigation: any }> = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(false);
   const flatListRef = useRef<FlatList>(null);
 
-  useEffect(() => {
-    loadMessages();
-  }, []);
+  useFocusEffect(
+    useCallback(() => {
+      loadMessages();
+    }, []),
+  );
 
   useEffect(() => {
     // Auto-scroll to bottom when new message arrives
