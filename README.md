@@ -2,13 +2,12 @@
 
 A simple AI-powered chatbot application built with React Native, featuring **Groq Cloud's** Llama 3.1 models via their OpenAI-compatible API. This app provides a clean, modern chat interface with dark mode support, persistent chat history, and smooth user experience.
 
-<img width="400" height="800" alt="Screenshot_1763372892" src="https://github.com/user-attachments/assets/19c65718-3aba-4263-b07f-d5dbe52b3c7f" />
-<img width="400" height="800" alt="Screenshot_1763372886" src="https://github.com/user-attachments/assets/811db6aa-b04e-49e7-98f9-ebf4e7d0e788" />
-<img width="400" height="800" alt="Screenshot_1763372880" src="https://github.com/user-attachments/assets/00249cf3-a6e6-48b8-a2d6-c0b2bd89d7f7" />
-<img width="400" height="800" alt="Screenshot_1763372876" src="https://github.com/user-attachments/assets/7a3df6b2-2234-413e-bb9f-e271035e4438" />
-<img width="400" height="800" alt="Screenshot_1763372868" src="https://github.com/user-attachments/assets/aa40acdd-d65a-42c9-b264-78b82d455599" />
 <img width="400" height="800" alt="Screenshot_1763372853" src="https://github.com/user-attachments/assets/2ea8d96a-048d-4c28-b61c-50e2ed169c91" />
-
+<img width="400" height="800" alt="Screenshot_1763372868" src="https://github.com/user-attachments/assets/aa40acdd-d65a-42c9-b264-78b82d455599" />
+<img width="400" height="800" alt="Screenshot_1763372876" src="https://github.com/user-attachments/assets/7a3df6b2-2234-413e-bb9f-e271035e4438" />
+<img width="400" height="800" alt="Screenshot_1763372880" src="https://github.com/user-attachments/assets/00249cf3-a6e6-48b8-a2d6-c0b2bd89d7f7" />
+<img width="400" height="800" alt="Screenshot_1763372886" src="https://github.com/user-attachments/assets/811db6aa-b04e-49e7-98f9-ebf4e7d0e788" />
+<img width="400" height="800" alt="Screenshot_1763372892" src="https://github.com/user-attachments/assets/19c65718-3aba-4263-b07f-d5dbe52b3c7f" />
 
 ## Features
 
